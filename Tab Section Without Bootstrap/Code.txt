@@ -1,0 +1,126 @@
+		
+		
+		
+		<!-- Tabs: full-width -->
+		<div id="tabs-fw" class="tabs-full-width nav-dark-colored-gradient-bg" style="padding-top:<?= get_field('padding_top') ?>px;padding-bottom:<?= get_field('padding_bottom')?>px;">
+			<!--
+			NOTE: The tabs' background class should correspond to the background class of stripe in .tabs-nav section.
+			      In our case: "nav-dark-colored-gradient-bg" << "stripe-dark-colored-gradient-bg"
+			-->
+			
+			<!-- Tabs Navigation -->
+			<nav class="tabs-nav">
+				
+				<!-- Stripe section -->
+				<div class="stripe stripe-dark-colored-gradient-bg diagonal-pinstripe-bg dark-colored-bg">
+					<div class="stripe-upper-bg"></div>
+					
+					<div class="container"> <!-- Container -->
+						
+						<div class="row">
+							
+							<div class="col-sm-12 columns">
+								
+								<h2 class="text-center text-white margin-bottom-20px"><?php echo get_field('title') ?></h2>
+								
+								<ul class="tabs-list lead-text-basic text-center">
+                                <?php $i=1; foreach(get_field('tabs_group')['tabs'] as $value){ ?>
+									<li class="<?php if($i==1){echo "active"; } ?>">
+                                        <a href="#tab-pane-<?= $i; ?>"><?= $value['heading'] ?></a>
+                                    </li>
+                                    <?php $i++; } ?>
+								</ul>
+								
+							</div>
+							
+						</div>
+						
+					</div> <!-- end Container -->
+					
+				</div>
+				<!-- end Stripe section -->
+				
+			</nav>
+			<!-- end Tabs Navigation -->
+			
+			<!-- Tabs Content -->
+			<div class="tabs-content">
+				
+				<!-- Tab Pane 1 -->
+                <?php 
+				//  print_r(get_field('tabs_group'));
+				//  die();
+				$i=1; foreach(get_field('tabs_group')['tab_contant']['contentbox_repeater'] as $val){?>
+<style>
+			h3.step-number-<?= $i ?>::before {
+    content: "<?php echo $i ?>"!important;
+}
+
+		</style>
+				<section  class="tab-pane <?php if($i==1){echo "active"; } ?>" id="tab-pane-<?= $i; ?>">
+             
+					<!-- Stripe section -->
+					<div class="stripe stripe-light-grey-bg v-notch v-notch-stick-heading">
+						<div class="stripe-upper-bg"></div>
+            
+						<div class="container"> <!-- Container -->
+                     
+							<div class="row">
+           
+								<div class="col-sm-8 col-sm-push-4 columns"> 
+									
+									<h3 class="step-number-<?= $i ?> margin-bottom-10px"><?= $val['heading'] ?></h3>
+									<p class="lead-text-medium"><?= $val['sub_heading'] ?></p>
+									
+									<p><?= $val['description'] ?></p>
+									
+									<ol class="custom-counter indent-medium">
+                                     <?php foreach ($val['points'] as  $val2) { ?>
+
+										<li><?= $val2['add_point'] ?></li>
+										<?php } ?>
+									</ol>
+									
+								</div>
+								
+								<div class="col-sm-4 col-sm-pull-8 columns">
+									
+									<figure class="img-dotted-curve-down width-240px align-only-xs-center width-auto-only-sm float-sm-right offset-sm-right-20px offset-md-right-20pct">
+										<img src="<?= $val['image']['url'] ?>" alt="" class="img-round">
+									</figure>
+									
+								</div>
+                 
+							</div>
+						
+						</div> <!-- end Container -->
+                     
+					</div>
+					<!-- end Stripe section -->
+             
+				</section>
+				<!-- end Tab Pane 1 -->
+                <?php $i++; }?>
+
+				
+			</div>
+			<!-- end Tabs Content -->
+			
+		</div>
+		<!-- end Tabs -->
+
+
+
+
+javascript
+
+<script>
+            function Showdesc(val){
+		
+				$('#Categories  div').addClass('d-none');
+				$('#Categories .'+val).removeClass('d-none');
+       
+            }
+
+
+        </script>
